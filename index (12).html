@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motorcycle Trip Packing List | Riders Share</title>
+<link rel="icon" href="https://images.prismic.io/riders-sharecom/aRyKgGGnmrmGp_Hh_logo_black_background_v2.png?auto=format,compress" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rs-blue: #2B8FD4;
+  --rs-blue-dark: #1A6BA8;
+  --rs-blue-light: #3DA5F0;
+  --rs-black: #1A1A1A;
+  --rs-dark: #222222;
+  --rs-gray-900: #2C2C2C;
+  --rs-gray-800: #3A3A3A;
+  --rs-gray-700: #555555;
+  --rs-gray-500: #888888;
+  --rs-gray-300: #BBBBBB;
+  --rs-gray-100: #F0F0F0;
+  --rs-white: #FFFFFF;
+  --rs-green: #2ECC71;
+  --rs-orange: #F39C12;
+  --rs-red: #E74C3C;
+  --rs-radius: 8px;
+  --rs-radius-lg: 12px;
+  --rs-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  --rs-shadow-lg: 0 8px 32px rgba(0,0,0,0.25);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--rs-black);
+  color: var(--rs-white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.header {
+  background: var(--rs-dark);
+  border-bottom: 3px solid var(--rs-blue);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.header-logo img { height: 36px; border-radius: 4px; }
+.header-logo span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--rs-white);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.header-right { display: flex; align-items: center; gap: 16px; }
+.header-stat { font-size: 0.85rem; color: var(--rs-gray-300); font-weight: 500; }
+.header-stat strong { color: var(--rs-blue-light); font-weight: 700; }
+.promo-banner {
+  background: var(--rs-blue);
+  text-align: center;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+}
+.promo-banner a { color: var(--rs-white); text-decoration: underline; text-underline-offset: 3px; }
+.hero {
+  background: linear-gradient(135deg, var(--rs-dark) 0%, var(--rs-gray-900) 50%, var(--rs-dark) 100%);
+  padding: 48px 24px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(43,143,212,0.03) 60px, rgba(43,143,212,0.03) 61px);
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.hero h1 span { color: var(--rs-blue-light); }
+.hero p {
+  color: var(--rs-gray-300);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+.controls-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  position: relative;
+}
+.btn {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 10px 18px;
+  border: none;
+  border-radius: var(--rs-radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.btn-primary { background: var(--rs-blue); color: var(--rs-white); }
+.btn-primary:hover { background: var(--rs-blue-dark); }
+.btn-secondary { background: var(--rs-gray-800); color: var(--rs-gray-300); border: 1px solid var(--rs-gray-700); }
+.btn-secondary:hover { background: var(--rs-gray-700); color: var(--rs-white); }
+.btn-danger { background: transparent; color: var(--rs-red); border: 1px solid var(--rs-red); }
+.btn-danger:hover { background: rgba(231,76,60,0.15); }
+.trip-selector { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; position: relative; }
+.trip-chip {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px solid var(--rs-gray-700);
+  background: transparent;
+  color: var(--rs-gray-300);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.trip-chip:hover { border-color: var(--rs-blue); color: var(--rs-white); }
+.trip-chip.active { border-color: var(--rs-blue); background: var(--rs-blue); color: var(--rs-white); }
+.progress-section {
+  padding: 20px 24px;
+  background: var(--rs-gray-900);
+  border-bottom: 1px solid var(--rs-gray-800);
+  position: sticky;
+  top: 63px;
+  z-index: 90;
+}
+.progress-inner { max-width: 900px; margin: 0 auto; }
+.progress-stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.progress-label { font-weight: 600; font-size: 0.9rem; }
+.progress-count { font-size: 0.85rem; color: var(--rs-gray-300); }
+.progress-count span { color: var(--rs-blue-light); font-weight: 700; }
+.progress-bar-bg { height: 8px; background: var(--rs-gray-800); border-radius: 4px; overflow: hidden; }
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rs-blue-dark), var(--rs-blue-light));
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.progress-bar-fill.complete { background: linear-gradient(90deg, var(--rs-green), #27ae60); }
+.main { max-width: 900px; margin: 0 auto; padding: 24px 16px 80px; }
+.category {
+  margin-bottom: 20px;
+  background: var(--rs-dark);
+  border-radius: var(--rs-radius-lg);
+  border: 1px solid var(--rs-gray-800);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.category:hover { border-color: var(--rs-gray-700); }
+.category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+.category-header:hover { background: rgba(255,255,255,0.03); }
+.category-header-left { display: flex; align-items: center; gap: 12px; }
+.category-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(43,143,212,0.12);
+  border-radius: var(--rs-radius);
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.category-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.category-badge {
+  font-size: 0.75rem; font-weight: 600;
+  padding: 3px 10px; border-radius: 12px;
+  background: var(--rs-gray-800); color: var(--rs-gray-300);
+  margin-left: 8px;
+}
+.category-badge.done { background: rgba(46,204,113,0.15); color: var(--rs-green); }
+.category-chevron { font-size: 1.2rem; color: var(--rs-gray-500); transition: transform 0.3s; }
+.category.open .category-chevron { transform: rotate(180deg); }
+.category-body { display: none; padding: 0 20px 16px; }
+.category.open .category-body { display: block; }
+.item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; border-radius: var(--rs-radius);
+  transition: background 0.15s; cursor: pointer; position: relative;
+}
+.item:hover { background: rgba(255,255,255,0.04); }
+.item-checkbox {
+  width: 22px; height: 22px;
+  border: 2px solid var(--rs-gray-700); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.2s; font-size: 0.75rem; color: transparent;
+}
+.item.checked .item-checkbox { background: var(--rs-blue); border-color: var(--rs-blue); color: var(--rs-white); }
+.item-name { flex: 1; font-weight: 500; font-size: 0.95rem; transition: opacity 0.2s; }
+.item.checked .item-name { text-decoration: line-through; opacity: 0.45; }
+.item-tags { display: flex; gap: 4px; flex-shrink: 0; }
+.item-tag {
+  font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 3px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.tag-essential { background: rgba(231,76,60,0.15); color: var(--rs-red); }
+.tag-optional { background: rgba(243,156,18,0.15); color: var(--rs-orange); }
+.tag-weather { background: rgba(43,143,212,0.15); color: var(--rs-blue-light); }
+.add-item-row { display: flex; gap: 8px; padding: 8px 12px; margin-top: 4px; }
+.add-item-input {
+  flex: 1; background: var(--rs-gray-900); border: 1px solid var(--rs-gray-700);
+  border-radius: var(--rs-radius); padding: 8px 12px; color: var(--rs-white);
+  font-family: 'Barlow', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+}
+.add-item-input:focus { border-color: var(--rs-blue); }
+.add-item-input::placeholder { color: var(--rs-gray-500); }
+.add-item-btn {
+  background: var(--rs-blue); color: var(--rs-white); border: none;
+  border-radius: var(--rs-radius); padding: 8px 14px; cursor: pointer;
+  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1rem; transition: background 0.2s;
+}
+.add-item-btn:hover { background: var(--rs-blue-dark); }
+.tips-section { margin-top: 32px; }
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.tip-card {
+  background: var(--rs-dark); border: 1px solid var(--rs-gray-800);
+  border-radius: var(--rs-radius-lg); padding: 20px; transition: border-color 0.2s, transform 0.2s;
+}
+.tip-card:hover { border-color: var(--rs-blue); transform: translateY(-2px); }
+.tip-number { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; color: var(--rs-blue); line-height: 1; margin-bottom: 6px; }
+.tip-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+.tip-desc { font-size: 0.85rem; color: var(--rs-gray-300); line-height: 1.5; }
+.cta-section {
+  margin-top: 40px; text-align: center;
+  background: linear-gradient(135deg, var(--rs-gray-900), var(--rs-dark));
+  border: 1px solid var(--rs-gray-800); border-radius: var(--rs-radius-lg); padding: 40px 24px;
+}
+.cta-section h2 {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.cta-section h2 span { color: var(--rs-blue-light); }
+.cta-section p { color: var(--rs-gray-300); margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+.btn-cta {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem;
+  padding: 14px 36px; background: var(--rs-blue); color: var(--rs-white); border: none;
+  border-radius: var(--rs-radius); cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+  transition: all 0.2s; text-decoration: none; display: inline-block;
+}
+.btn-cta:hover { background: var(--rs-blue-dark); transform: translateY(-1px); }
+.weight-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 20px; background: var(--rs-gray-900); border-radius: var(--rs-radius);
+  margin-top: 12px; font-size: 0.9rem; border: 1px solid var(--rs-gray-800);
+}
+.weight-bar .label { color: var(--rs-gray-300); font-weight: 500; }
+.weight-bar .value { font-weight: 700; color: var(--rs-blue-light); font-size: 1.05rem; }
+.weight-bar .status { font-size: 0.8rem; }
+.weight-bar .status.good { color: var(--rs-green); }
+.weight-bar .status.warning { color: var(--rs-orange); }
+.weight-bar .status.heavy { color: var(--rs-red); }
+.search-bar { max-width: 900px; margin: 0 auto 20px; padding: 0 16px; }
+.search-input-wrap { position: relative; }
+.search-input {
+  width: 100%; background: var(--rs-dark); border: 1px solid var(--rs-gray-700);
+  border-radius: var(--rs-radius); padding: 12px 16px 12px 42px; color: var(--rs-white);
+  font-family: 'Barlow', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+}
+.search-input:focus { border-color: var(--rs-blue); }
+.search-input::placeholder { color: var(--rs-gray-500); }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--rs-gray-500); font-size: 1.1rem; pointer-events: none; }
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
+.filter-chip {
+  font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 0.75rem;
+  padding: 5px 12px; border-radius: 14px; border: 1px solid var(--rs-gray-700);
+  background: transparent; color: var(--rs-gray-300); cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+.filter-chip:hover { border-color: var(--rs-blue); color: var(--rs-white); }
+.filter-chip.active { background: var(--rs-blue); border-color: var(--rs-blue); color: var(--rs-white); }
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--rs-gray-900); border: 1px solid var(--rs-gray-700); border-radius: var(--rs-radius);
+  padding: 12px 24px; font-weight: 600; font-size: 0.9rem; z-index: 200;
+  transition: transform 0.3s ease; box-shadow: var(--rs-shadow-lg);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--rs-gray-800);
+}
+@media print {
+  .header, .promo-banner, .controls-bar, .trip-selector, .search-bar, .filter-row, .add-item-row, .add-item-btn, .cta-section, .tips-section, .progress-section { display: none !important; }
+  body { background: #fff; color: #000; }
+  .category { border: 1px solid #ccc; page-break-inside: avoid; }
+  .category-body { display: block !important; }
+  .item-checkbox { border-color: #333; }
+  .hero { background: #fff; padding: 20px; }
+  .hero h1 span { color: #2B8FD4; }
+}
+@media (max-width: 600px) {
+  .header { padding: 10px 16px; }
+  .header-logo span { display: none; }
+  .hero { padding: 32px 16px 28px; }
+  .controls-bar { gap: 6px; }
+  .btn { padding: 8px 12px; font-size: 0.78rem; }
+  .category-header { padding: 14px 14px; }
+  .category-icon { width: 34px; height: 34px; font-size: 1.1rem; }
+  .tips-grid { grid-template-columns: 1fr; }
+  .weight-bar { flex-direction: column; gap: 6px; text-align: center; }
+}
+</style>
+</head>
+<body>
+<div class="promo-banner">
+  Rent your dream touring motorcycle starting at $25/day. <a href="https://www.ridersshare.com" target="_blank">Sign Up for 20% Off Your First Ride &raquo;</a>
+</div>
+<header class="header">
+  <a class="header-logo" href="https://www.ridersshare.com" target="_blank">
+    <img src="https://images.prismic.io/riders-sharecom/aRyKgGGnmrmGp_Hh_logo_black_background_v2.png?auto=format,compress" alt="Riders Share Logo">
+    <span>Riders Share</span>
+  </a>
+  <div class="header-right">
+    <div class="header-stat"><strong id="totalChecked">0</strong> / <span id="totalItems">0</span> packed</div>
+  </div>
+</header>
+<section class="hero">
+  <h1>Motorcycle Trip <span>Packing List</span></h1>
+  <p>The ultimate interactive checklist for touring riders. Select your trip type, check off items as you pack, and never forget the essentials.</p>
+  <div class="trip-selector" id="tripSelector">
+    <button class="trip-chip active" data-trip="all">All Items</button>
+    <button class="trip-chip" data-trip="weekend">Weekend</button>
+    <button class="trip-chip" data-trip="week">Week Trip</button>
+    <button class="trip-chip" data-trip="long">Long Tour</button>
+    <button class="trip-chip" data-trip="camping">Camping</button>
+  </div>
+  <div style="height:16px"></div>
+  <div class="controls-bar">
+    <button class="btn btn-primary" onclick="expandAll()">&#9660; Expand All</button>
+    <button class="btn btn-secondary" onclick="collapseAll()">&#9650; Collapse All</button>
+    <button class="btn btn-secondary" onclick="printList()">&#128424; Print</button>
+    <button class="btn btn-secondary" onclick="exportList()">&#128190; Save Progress</button>
+    <button class="btn btn-secondary" onclick="importList()">&#128194; Load Progress</button>
+    <button class="btn btn-danger" onclick="resetAll()">&#10006; Reset</button>
+  </div>
+</section>
+<section class="progress-section">
+  <div class="progress-inner">
+    <div class="progress-stats">
+      <div class="progress-label">Packing Progress</div>
+      <div class="progress-count"><span id="progressPercent">0%</span></div>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="weight-bar">
+      <div class="label">Estimated Pack Weight</div>
+      <div class="value" id="weightValue">0 lbs</div>
+      <div class="status good" id="weightStatus">Light load</div>
+    </div>
+  </div>
+</section>
+<div class="search-bar">
+  <div class="search-input-wrap">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search items...">
+  </div>
+</div>
+<div class="filter-row" id="filterRow">
+  <button class="filter-chip active" data-filter="all">All</button>
+  <button class="filter-chip" data-filter="essential">Essential</button>
+  <button class="filter-chip" data-filter="optional">Optional</button>
+  <button class="filter-chip" data-filter="weather">Weather</button>
+  <button class="filter-chip" data-filter="unchecked">Unchecked</button>
+</div>
+<main class="main" id="categoriesContainer"></main>
+<div class="toast" id="toast"></div>
+<script>
+const CATEGORIES=[{id:'gear',title:'Motorcycle Gear',icon:'&#127940;',items:[{name:'Helmet',tag:'essential',weight:3.5,trips:['all','weekend','week','long','camping']},{name:'Versatile riding jacket (removable liner)',tag:'essential',weight:4,trips:['all','weekend','week','long','camping']},{name:'Riding pants',tag:'essential',weight:2.5,trips:['all','weekend','week','long','camping']},{name:'Motorcycle boots',tag:'essential',weight:4,trips:['all','weekend','week','long','camping']},{name:'Riding gloves',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Rain gear / rain suit',tag:'essential',weight:1.5,trips:['all','weekend','week','long','camping']},{name:'Heated gear (cold weather)',tag:'weather',weight:2,trips:['all','week','long','camping']},{name:'Neck gaiter / balaclava',tag:'weather',weight:0.2,trips:['all','weekend','week','long','camping']},{name:'Earplugs (wind noise)',tag:'optional',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Reflective vest (night riding)',tag:'optional',weight:0.3,trips:['all','week','long']},{name:'Spare visor / anti-fog insert',tag:'optional',weight:0.5,trips:['all','week','long']}]},{id:'clothing',title:'Essential Clothing',icon:'&#128085;',items:[{name:'Base layers (moisture-wicking)',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Casual shirts / t-shirts',tag:'essential',weight:0.8,trips:['all','weekend','week','long','camping']},{name:'Jeans / casual pants',tag:'essential',weight:1.5,trips:['all','weekend','week','long','camping']},{name:'Underwear (quick-dry preferred)',tag:'essential',weight:0.4,trips:['all','weekend','week','long','camping']},{name:'Socks (riding + casual)',tag:'essential',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Sleepwear',tag:'optional',weight:0.5,trips:['all','week','long','camping']},{name:'Swimsuit',tag:'optional',weight:0.3,trips:['all','week','long']},{name:'Hat / cap',tag:'optional',weight:0.2,trips:['all','weekend','week','long','camping']},{name:'Lightweight fleece / hoodie',tag:'weather',weight:1,trips:['all','weekend','week','long','camping']},{name:'Sandals / casual shoes',tag:'optional',weight:1,trips:['all','week','long']}]},{id:'toiletries',title:'Toiletries',icon:'&#129524;',items:[{name:'Toothbrush and toothpaste',tag:'essential',weight:0.2,trips:['all','weekend','week','long','camping']},{name:'Shampoo and conditioner (travel size)',tag:'essential',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Soap / body wash',tag:'essential',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Deodorant',tag:'essential',weight:0.2,trips:['all','weekend','week','long','camping']},{name:'Sunscreen',tag:'essential',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Lip balm with SPF',tag:'essential',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Personal hygiene items',tag:'essential',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Compact towel (microfiber)',tag:'optional',weight:0.5,trips:['all','week','long','camping']},{name:'Pain relievers (ibuprofen, etc.)',tag:'essential',weight:0.1,trips:['all','weekend','week','long','camping']},{name:'Prescription medications',tag:'essential',weight:0.2,trips:['all','weekend','week','long','camping']}]},{id:'tools',title:'Tools & Maintenance',icon:'&#128295;',items:[{name:'Tire repair / plug kit',tag:'essential',weight:1,trips:['all','weekend','week','long','camping']},{name:'Multi-tool / Leatherman',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Chain lube',tag:'essential',weight:0.5,trips:['all','week','long']},{name:'Spare key for motorcycle',tag:'essential',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Duct tape (wrap around lighter)',tag:'essential',weight:0.2,trips:['all','weekend','week','long','camping']},{name:'Zip ties (assorted)',tag:'essential',weight:0.1,trips:['all','weekend','week','long','camping']},{name:'Portable jump starter',tag:'optional',weight:1.5,trips:['all','week','long']},{name:'12V portable air compressor',tag:'optional',weight:1,trips:['all','week','long']},{name:'Spare fuses',tag:'optional',weight:0.05,trips:['all','week','long']},{name:'JB Weld / epoxy',tag:'optional',weight:0.2,trips:['all','long']}]},{id:'electronics',title:'Electronics',icon:'&#128268;',items:[{name:'Phone and charger',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'GPS or phone mount',tag:'essential',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Power bank (10,000+ mAh)',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Camera / GoPro',tag:'optional',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Bluetooth helmet speakers / comm',tag:'optional',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Headphones / earbuds',tag:'optional',weight:0.1,trips:['all','weekend','week','long','camping']},{name:'USB charging cable (spare)',tag:'essential',weight:0.1,trips:['all','weekend','week','long','camping']},{name:'12V USB adapter for bike',tag:'optional',weight:0.2,trips:['all','week','long']}]},{id:'docs',title:'Documents (Keep ON You)',icon:'&#128196;',items:[{name:"Driver's license",tag:'essential',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Motorcycle registration',tag:'essential',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Proof of insurance',tag:'essential',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Roadside assistance info',tag:'essential',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Medical information card',tag:'essential',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Cash and credit cards',tag:'essential',weight:0.1,trips:['all','weekend','week','long','camping']},{name:'Passport (if crossing borders)',tag:'optional',weight:0.1,trips:['all','long']},{name:'Hotel / campground reservations',tag:'optional',weight:0.05,trips:['all','weekend','week','long','camping']}]},{id:'luggage',title:'Luggage & Comfort',icon:'&#127890;',items:[{name:'Saddlebags or panniers',tag:'essential',weight:0,trips:['all','weekend','week','long','camping']},{name:'Tank bag',tag:'optional',weight:0,trips:['all','weekend','week','long','camping']},{name:'Dry bags / compression sacks',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Bungee cords / cargo net',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Backpack (lightweight)',tag:'optional',weight:0,trips:['all','weekend','week','long','camping']},{name:'Seat pad / cushion (long rides)',tag:'optional',weight:1,trips:['all','week','long']},{name:'Portable padlocks',tag:'optional',weight:0.3,trips:['all','week','long','camping']}]},{id:'misc',title:'Miscellaneous',icon:'&#127793;',items:[{name:'Water bottle (insulated)',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Snacks / energy bars',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'First aid kit (compact)',tag:'essential',weight:0.5,trips:['all','weekend','week','long','camping']},{name:'Flashlight / headlamp',tag:'essential',weight:0.3,trips:['all','weekend','week','long','camping']},{name:'Pocket knife',tag:'optional',weight:0.2,trips:['all','weekend','week','long','camping']},{name:'Matches / lighter',tag:'optional',weight:0.05,trips:['all','weekend','week','long','camping']},{name:'Book or e-reader',tag:'optional',weight:0.5,trips:['all','week','long','camping']},{name:'Notepad and pen',tag:'optional',weight:0.1,trips:['all','weekend','week','long','camping']},{name:'Sunglasses',tag:'optional',weight:0.1,trips:['all','weekend','week','long','camping']},{name:'Bandana / buff (multi-use)',tag:'optional',weight:0.1,trips:['all','weekend','week','long','camping']}]},{id:'camping',title:'Camping Gear',icon:'&#9978;',items:[{name:'Lightweight tent (1-2 person)',tag:'essential',weight:4,trips:['camping']},{name:'Sleeping bag (compressed)',tag:'essential',weight:2.5,trips:['camping']},{name:'Sleeping pad / inflatable mat',tag:'essential',weight:1.5,trips:['camping']},{name:'Camp stove (compact)',tag:'optional',weight:1,trips:['camping']},{name:'Mess kit (pot, utensils, cup)',tag:'optional',weight:0.8,trips:['camping']},{name:'Fire starter / waterproof matches',tag:'essential',weight:0.1,trips:['camping']},{name:'Water purification tablets',tag:'optional',weight:0.1,trips:['camping']},{name:'Paracord (50 ft)',tag:'optional',weight:0.3,trips:['camping']},{name:'Camping pillow (inflatable)',tag:'optional',weight:0.3,trips:['camping']},{name:'Insect repellent',tag:'essential',weight:0.2,trips:['camping']}]}];
+
+const TIPS=[
+  {title:'Less is More',desc:'Lay out everything, separate into YES, MAYBE, and NO piles. Only pack the essentials.'},
+  {title:'Heavy Items Low',desc:"Place heavier items at the bottom and close to the bike's center for better balance and handling."},
+  {title:'Roll Your Clothes',desc:'Rolling instead of folding saves surprising amounts of space and makes repacking faster.'},
+  {title:'Choose Versatile Gear',desc:'A jacket with a removable liner does the job of two. Prioritize multi-use items.'},
+  {title:'Leave Room',desc:"Don't fill every pocket from the start. Leave space for souvenirs and easy repacking."},
+  {title:'Use Shoe Space',desc:'Stuff socks, chargers, or small items inside your boots to use every inch.'},
+  {title:'Entertainment Matters',desc:'Bluetooth helmet speakers are great for music and podcasts on long stretches of road.'},
+  {title:"Don't Overfill Your Pack",desc:'Invest in a motorcycle-specific backpack and pack it lightly to avoid fatigue.'},
+  {title:'Organize Wisely',desc:'Use separate bags or compartments for different categories. Finding things should be quick.'},
+  {title:'Share the Load',desc:'Riding with others? Coordinate to avoid packing duplicates of shared items.'},
+  {title:'Compression Sacks',desc:'Waterproof compression sacks protect gear from rain and maximize packing efficiency.'},
+  {title:'Secure Your Gear',desc:'Use built-in locks or portable padlocks. Keep documents and electronics on your person.'},
+  {title:"Don't Forget Chargers",desc:'Designate a specific spot for chargers and cables so they are always easy to find.'},
+  {title:'Prepare for the Unexpected',desc:'A few zip ties and bungee cords take up almost no space but solve countless problems.'}
+];
+
+let state={checked:{},customItems:{},tripType:'all',filter:'all',search:''};
+
+function getVisibleItems(cat){
+  const allItems=[...cat.items];
+  if(state.customItems[cat.id])state.customItems[cat.id].forEach(ci=>allItems.push(ci));
+  return allItems.filter(item=>{
+    if(state.tripType!=='all'&&!item.trips.includes(state.tripType))return false;
+    if(state.filter==='essential'&&item.tag!=='essential')return false;
+    if(state.filter==='optional'&&item.tag!=='optional')return false;
+    if(state.filter==='weather'&&item.tag!=='weather')return false;
+    if(state.filter==='unchecked'&&state.checked[cat.id+'::'+item.name])return false;
+    if(state.search){const q=state.search.toLowerCase();if(!item.name.toLowerCase().includes(q)&&!cat.title.toLowerCase().includes(q))return false;}
+    return true;
+  });
+}
+
+function escapeAttr(s){return s.replace(/'/g,"&#39;").replace(/"/g,"&quot;");}
+
+function render(){
+  const container=document.getElementById('categoriesContainer');
+  let html='';
+  CATEGORIES.forEach(cat=>{
+    const items=getVisibleItems(cat);
+    if(items.length===0&&state.search)return;
+    if(items.length===0&&state.tripType!=='all'&&cat.id==='camping'&&state.tripType!=='camping')return;
+    const checkedCount=items.filter(i=>state.checked[cat.id+'::'+i.name]).length;
+    const allDone=checkedCount===items.length&&items.length>0;
+    html+=`<div class="category open" id="cat-${cat.id}"><div class="category-header" onclick="toggleCategory('${cat.id}')"><div class="category-header-left"><div class="category-icon">${cat.icon}</div><div class="category-title">${cat.title}</div><div class="category-badge ${allDone?'done':''}">${checkedCount}/${items.length}</div></div><div class="category-chevron">&#9660;</div></div><div class="category-body">`;
+    items.forEach(item=>{
+      const key=cat.id+'::'+item.name;
+      const isChecked=state.checked[key];
+      const tagClass=item.tag==='essential'?'tag-essential':item.tag==='weather'?'tag-weather':'tag-optional';
+      const tagLabel=item.tag==='essential'?'Must Have':item.tag==='weather'?'Weather':'Optional';
+      html+=`<div class="item ${isChecked?'checked':''}" onclick="toggleItem('${escapeAttr(key)}')"><div class="item-checkbox">${isChecked?'&#10003;':''}</div><div class="item-name">${item.name}</div><div class="item-tags"><span class="item-tag ${tagClass}">${tagLabel}</span></div></div>`;
+    });
+    html+=`<div class="add-item-row"><input type="text" class="add-item-input" id="addInput-${cat.id}" placeholder="Add custom item..." onkeydown="if(event.key==='Enter')addCustomItem('${cat.id}')"><button class="add-item-btn" onclick="addCustomItem('${cat.id}')">+</button></div></div></div>`;
+  });
+  html+=`<div class="tips-section"><div class="section-title">14 Packing Tips for Riders</div><div class="tips-grid">${TIPS.map((t,i)=>`<div class="tip-card"><div class="tip-number">${String(i+1).padStart(2,'0')}</div><div class="tip-title">${t.title}</div><div class="tip-desc">${t.desc}</div></div>`).join('')}</div></div>`;
+  html+=`<div class="cta-section"><h2>Rent Your Dream <span>Touring Motorcycle</span></h2><p>From Harley-Davidsons to BMWs, Riders Share offers thousands of motorcycle rentals across the U.S. starting at just $25/day. Filter by gear included.</p><a href="https://www.ridersshare.com" target="_blank" class="btn-cta">Browse Motorcycles</a></div>`;
+  container.innerHTML=html;
+  updateProgress();
+}
+
+function toggleCategory(id){const el=document.getElementById('cat-'+id);if(el)el.classList.toggle('open');}
+
+function toggleItem(key){state.checked[key]=!state.checked[key];saveState();render();}
+
+function addCustomItem(catId){
+  const input=document.getElementById('addInput-'+catId);
+  if(!input||!input.value.trim())return;
+  if(!state.customItems[catId])state.customItems[catId]=[];
+  state.customItems[catId].push({name:input.value.trim(),tag:'optional',weight:0.5,trips:['all','weekend','week','long','camping']});
+  saveState();render();showToast('Item added: '+input.value.trim());
+}
+
+function updateProgress(){
+  let total=0,checked=0,weight=0;
+  CATEGORIES.forEach(cat=>{
+    const items=getVisibleItems(cat);
+    total+=items.length;
+    items.forEach(item=>{const key=cat.id+'::'+item.name;if(state.checked[key]){checked++;weight+=item.weight;}});
+  });
+  const pct=total>0?Math.round((checked/total)*100):0;
+  document.getElementById('totalChecked').textContent=checked;
+  document.getElementById('totalItems').textContent=total;
+  document.getElementById('progressPercent').textContent=pct+'%';
+  const fill=document.getElementById('progressFill');
+  fill.style.width=pct+'%';
+  fill.className='progress-bar-fill'+(pct===100?' complete':'');
+  const wEl=document.getElementById('weightValue');
+  const sEl=document.getElementById('weightStatus');
+  wEl.textContent=weight.toFixed(1)+' lbs';
+  if(weight<20){sEl.textContent='Light load';sEl.className='status good';}
+  else if(weight<40){sEl.textContent='Moderate load';sEl.className='status warning';}
+  else{sEl.textContent='Heavy - watch your balance';sEl.className='status heavy';}
+}
+
+document.getElementById('tripSelector').addEventListener('click',e=>{
+  if(!e.target.classList.contains('trip-chip'))return;
+  document.querySelectorAll('.trip-chip').forEach(c=>c.classList.remove('active'));
+  e.target.classList.add('active');
+  state.tripType=e.target.dataset.trip;
+  saveState();render();
+});
+
+document.getElementById('filterRow').addEventListener('click',e=>{
+  if(!e.target.classList.contains('filter-chip'))return;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  e.target.classList.add('active');
+  state.filter=e.target.dataset.filter;
+  render();
+});
+
+document.getElementById('searchInput').addEventListener('input',e=>{state.search=e.target.value;render();});
+
+function expandAll(){document.querySelectorAll('.category').forEach(c=>c.classList.add('open'));}
+function collapseAll(){document.querySelectorAll('.category').forEach(c=>c.classList.remove('open'));}
+function resetAll(){if(!confirm('Reset all checked items and custom items?'))return;state.checked={};state.customItems={};localStorage.removeItem('rs-packing-state');render();showToast('Packing list reset');}
+function printList(){window.print();}
+function exportList(){
+  const data=JSON.stringify(state,null,2);
+  const blob=new Blob([data],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='riders-share-packing-list.json';a.click();
+  URL.revokeObjectURL(url);showToast('Progress saved to file');
+}
+function importList(){
+  const input=document.createElement('input');
+  input.type='file';input.accept='.json';
+  input.onchange=e=>{
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try{
+        const loaded=JSON.parse(ev.target.result);
+        if(loaded.checked)state.checked=loaded.checked;
+        if(loaded.customItems)state.customItems=loaded.customItems;
+        if(loaded.tripType){state.tripType=loaded.tripType;document.querySelectorAll('.trip-chip').forEach(c=>{c.classList.toggle('active',c.dataset.trip===state.tripType);});}
+        saveState();render();showToast('Progress loaded');
+      }catch{showToast('Invalid file');}
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function saveState(){try{localStorage.setItem('rs-packing-state',JSON.stringify(state));}catch{}}
+function loadState(){try{const saved=localStorage.getItem('rs-packing-state');if(saved){const parsed=JSON.parse(saved);if(parsed.checked)state.checked=parsed.checked;if(parsed.customItems)state.customItems=parsed.customItems;if(parsed.tripType)state.tripType=parsed.tripType;}}catch{}}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400);}
+
+loadState();
+document.querySelectorAll('.trip-chip').forEach(c=>{c.classList.toggle('active',c.dataset.trip===state.tripType);});
+render();
+</script>
+</body>
+</html>
